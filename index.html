@@ -6,7 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamping blogpost</title>
     <link rel="stylesheet" href="main.css">
-</head>
+    <style> *{box-sizing: border-box;}
+    /* background color and spacing all around*/
+    body {
+        font-family: papyrus, copperplate, fantasy;
+        padding: 10px;
+        background: #c95f0d;
+    }
+    /* header*/
+    .header{
+       padding: 15px;
+       font-size: 50px; 
+       text-align: center;
+       background: rgb(155, 148, 148)
+    }
+    /*columns*/
+    .leftcolumn{
+      float:left;
+      width: 70%;  
+    }
+    .rightcolumn{
+        float: right;
+        width: 30%;
+        padding-left: 40px;
+    }
+    /*image placeholder*/
+    .fakeimg{
+        background-color: #0cb7c9;
+        width: auto;
+        padding: 10px;
+    }
+    /* card for text */
+.card {
+   background-color: #b0848a;
+   padding: 50px;
+   margin-top: 50px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+    </style>
+</head> 
 <body>
     <h1>Task List</h1>
     <p id="msg">Current tasks:</p>
@@ -16,4 +58,6 @@
       <li>Enable switching the theme</li>
     </ul>
 </body>
+
+
 </html>
