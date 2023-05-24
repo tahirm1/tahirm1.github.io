@@ -1,74 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamping blogpost</title>
-    <link rel="stylesheet" href="main.css">
-    <style> *{box-sizing: border-box;}
-  
-   
-    </style>
-</head> 
+<!-- saved from url=(0043)http://localhost:8000/Payment_Web_Page.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Payment Page</title>
+</head>
 <body>
+  <h1>Payment Page</h1>
+  <form id="paymentForm" action="http://localhost:8000/make-payment" method="post">
+    <label for="cardNumber">Card Number:</label>
+    <input type="text" id="cardNumber" name="cardNumber" required=""><br><br>
 
-    <div class="header">
-      <h2>Glamping Experiences</h2>
-    </div>
-    
-    <div class="row">
-      <div class="leftcolumn">
-        <div class="card">
-          <h2>Top 5 Glamping Destinations in Colorado</h2>
-          <div class="fakeimg" style="height:200px;">Image</div>
-          <p> <ol>
-            <li>Journey Hotsprings</li>
-            <li>Arapaho Valley Ranch</li>
-            <li>Tennessee Pass Sleep Yurts</li>
-            <li>Green Sky Yurt Retreat</li>
-            <li>Dunton River Camp</li>
-          </ol> </p>
-        </div>
-        <div class="card">
-          <h2>Transportation</h2>
-          <div class="fakeimg" style="height:200px;">Image</div>
-          <p>Options for transportation</p>
-        </div>
-      </div>
-      <div class="rightcolumn">
-        <div class="card">
-          <h2>About Me</h2>
-          <div class="fakeimg" style="height:100px;">Image</div>
-          <p>My name is Maria and I have a pssion for the outdoors. Beign a Colorado local who wants to experience all that Colorado has to offer, but beign someone who does not necessesarily like to 'rough it' when it comes to camping, I wanted to receate a platform where I can post about a more glamarous camping experience, or Glamping so everyone who wants to be out in nature overnight can experience and be in nature without having to get your hands dirty. Please feel free to comment below, like, or share my posts!
-            <input type="text" id="comment-box" placeholder="Enter comment">
-            <button id="post">Post</button>
-            <ul id="unordered">
-               
-           </ul>
-        </p>
-        </div>
-        <div class="card">
-          <h3>Popular Post</h3>
-          <div class="fakeimg">Image</div><br>
-          <div class="fakeimg">Image</div><br>
-          <div class="fakeimg">Image</div>
-        </div>
-        <div class="card">
-          <h3>Follow Me</h3>
-          <p>Some text..</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer">
-      <h2>Footer</h2>
-    </div>
-    <script src="app.js"></script>
-    <noscript>You need to enable JavaScript to view the full site.</noscript>
-    </body>
+    <label for="expiryDate">Expiry Date:</label>
+    <input type="text" id="expiryDate" name="expiryDate" required=""><br><br>
 
-    
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" name="cvv" required=""><br><br>
 
+    <input type="submit" value="Make Payment">
+  </form>
 
-</html>
+  <script>
+    // Handle form submission
+    document.getElementById("paymentForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form data
+      const formData = new FormData(event.target);
+
+      // Create JSON object from form data
+      const paymentData = {};
+      for (let entry of formData.entries()) {
+        paymentData[entry[0]] = entry[1];
+      }
+
+      // Send POST request to payment server
+      fetch("/make-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(paymentData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response from the payment server
+        console.log(data); // You can customize this based on your requirements
+      })
+      .catch(error => {
+        console.error("An error occurred:", error);
+      });
+    });
+  </script>
+
+</body></html>
